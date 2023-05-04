@@ -79,23 +79,39 @@
 //     res.status(404).send('<h1>404 Not Found</h1>');
 // });
 
+// const express = require('express');
+// const path = require('path');
+// const app = express();
+
+// app.use(express.static('./public'));
+
+// app.get('/', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, './public/index.html'));
+// });
+
+// app.get('/about', (req, res) => {
+
+// });
+
+// app.all('*', (req, res) => {
+//     res.status(404).send('<h1>404 Not Found</h1>');
+// });
+
+// app.listen(5000, () => {
+//     console.log('Server is listening on port 5000');
+// });
+
 const express = require('express');
 const path = require('path');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './navbar-app/index.html'));
-});
-
-app.get('/about', (req, res) => {
-
-});
-
-app.all('*', (req, res) => {
-    res.status(404).send('<h1>404 Not Found</h1>');
+    res.json([
+        {name: 'A'},
+        {name: 'B'},
+    ]);
 });
 
 app.listen(5000, () => {
-    console.log('Server is listening on port 5000');
+    console.log('Server is listening on port 5000')
 });
-
