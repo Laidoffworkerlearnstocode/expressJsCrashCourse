@@ -105,7 +105,6 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const {products} = require('./data');
-const { read } = require('fs');
 
 app.get('/', (req, res) => {
     res.send('<h1> Home page </h1><a href="/api/products">Products</a>');
@@ -117,6 +116,11 @@ app.get('/api/products', (req, res) => {
         return {id, name, image};
     });
     res.json(newProducts);
+});
+
+app.get('/api/products/:productID', (req, res) => {
+    const singleProduct = products.find((product) => product.id === Number(req.params.productID));
+    res.json(singleProduct);
 });
 
 app.listen(5000, () => {
