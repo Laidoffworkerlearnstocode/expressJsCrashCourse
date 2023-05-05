@@ -84,7 +84,7 @@
 // const app = express();
 
 // app.use(express.static('./public'));
-
+ 
 // app.get('/', (req, res) => {
 //     res.sendFile(path.resolve(__dirname, './public/index.html'));
 // });
@@ -104,12 +104,19 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const {products} = require('./data');
+const { read } = require('fs');
 
 app.get('/', (req, res) => {
-    res.json([
-        {name: 'A'},
-        {name: 'B'},
-    ]);
+    res.send('<h1> Home page </h1><a href="/api/products">Products</a>');
+});
+
+app.get('/api/products', (req, res) => {
+    const newProducts = products.map((product) => {
+        const {id, name, image} = product;
+        return {id, name, image};
+    });
+    res.json(newProducts);
 });
 
 app.listen(5000, () => {
