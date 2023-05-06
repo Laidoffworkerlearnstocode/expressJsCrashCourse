@@ -118,12 +118,18 @@ app.get('/api/products', (req, res) => {
     res.json(newProducts);
 });
 
-app.get('/api/products/:productID', (req, res) => {
+app.get('/api/products/:productID/name/:name', (req, res) => {
+    console.log(req.params);
     const singleProduct = products.find((product) => product.id === Number(req.params.productID));
     if (!singleProduct) {
         return res.status(404).send('Product does not exist');
     }
     res.json(singleProduct);
+});
+
+app.get('/api/v1/query', (req, res) => {
+    console.log(req.query);
+    res.send('Query page');
 });
 
 app.listen(5000, () => {
